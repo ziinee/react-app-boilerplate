@@ -1,12 +1,30 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {render} from 'react-dom';
 
-class App extends Component {
-  render(){
-    return (
-      <h1>Hello World</h1>
+
+// 부모 컴포넌트
+class GroceryList extends Component {
+  render () {
+    return(
+      <ul>
+        <ListItem quantity="1">Bread</ListItem>
+        <ListItem quantity="6">Eggs</ListItem>
+        <ListItem quantity="2">Milk</ListItem>
+      </ul>
     );
   }
 }
 
-render(<App />, document.getElementById('root'));
+// 자식 컴포넌트
+class ListItem extends Component {
+  render () {
+    return(
+      <li>
+        {this.props.quantity} x {this.props.children}
+      </li>
+    );
+  }
+}
+
+
+render(<GroceryList />, document.getElementById("root"));
