@@ -23,7 +23,7 @@ class Card extends Component {
           <CheckList cardId={this.props.id} tasks={this.props.tasks} />
         </div>
       );
-    };
+    }
 
     let sideColor = {
       position: 'absolute',
@@ -39,7 +39,7 @@ class Card extends Component {
       <div className="card">
         <div style={sideColor}/>
         <div className={
-          this.state.showDetails? "card__title card__title--is-open" : "card__title"
+          this.state.showDetails? 'card__title card__title--is-open' : 'card__title'
         } onClick={this.toggleDetails.bind(this)}>
         {this.props.title}
         </div>
