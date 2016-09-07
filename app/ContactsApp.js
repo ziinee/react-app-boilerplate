@@ -1,7 +1,34 @@
 import React, { Component, PropTypes } from 'react';
-import { render } from 'react-dom';
+import 'whatwg-fetch';
 
 // 주 컴포넌트이며 SearchBar와 ContactList를 렌더링
+
+class ContactsAppContainer extends Component {
+  constructor () {
+    super();
+    this.state={
+      contacts: []
+    };
+  }
+
+  componentDidMount () {
+    fetch('./contacts.json')
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({contacts: responseData});
+    })
+    .catch((error) => {
+      console.log('Error fetching and parsing data', error);
+    });
+  }
+
+  render(){
+    return (
+      <ContactsApp contacts={this.state.contacts} />
+    );
+  }
+}
+
 
 class ContactsApp extends Component {
   constructor () {
@@ -88,13 +115,5 @@ ContactItem.propTypes = {
   email: PropTypes.string.isRequired,
 };
 
-let contacts = [
-  {name: 'Cassio Zen', email: 'cassiozen@gmail.com'},
-  {name: 'Dan Abramov', email: 'gaearon@somewhere.com'},
-  {name: 'Pete Hunt', email: 'petepete@gmail.com'},
-  {name: 'Paul O\'Shannessy', email: 'zpao@gmail.com'},
-  {name: 'jhKim', email: 'plus21kr@gmail.com'},
-  {name: 'Ryan', email: 'RRRRR@somewhere.com'},
-];
 
-export default {contacts, ContactsApp};
+export default {ContactsAppContainer};

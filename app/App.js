@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 import {render} from 'react-dom';
 import KanbanBoard from './KanbanBoard';
@@ -29,4 +31,4 @@ let cardsList = [
 // render(<KanbanBoard cards={cardsList} />, document.getElementById('root'));
 
 import ContactsApp from './ContactsApp';
-render (<ContactsApp.ContactsApp contacts={ContactsApp.contacts} />, document.getElementById('root'));
+render (<ContactsApp.ContactsAppContainer />, document.getElementById('root'));
