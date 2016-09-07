@@ -1,6 +1,9 @@
+// @flow
+
 import React, {Component, PropTypes} from 'react';
 import CheckList from './CheckList';
 import marked from 'marked';
+import type {CardType, TaskType} from './types.js'
 
 let titlePropType = (props, propName, componentName) => {
   if (props[propName]) {
@@ -14,18 +17,29 @@ let titlePropType = (props, propName, componentName) => {
 };
 
 class Card extends Component {
-  constructor () {
+  state: {
+    showDetails: boolean,
+  }
+  props: {
+    id: number,
+    title: string,
+    description: string,
+    color: string,
+    tasks: TaskType[],
+  }
+
+  constructor() : void {
     super(...arguments);
     this.state = {
       showDetails: false
     };
   }
 
-  toggleDetails(){
+  toggleDetails() : void {
     this.setState({showDetails: !this.state.showDetails});
   }
 
-  render () {
+  render() : Object {
     let cardDetails;
     if (this.state.showDetails) {
       cardDetails = (
@@ -59,13 +73,5 @@ class Card extends Component {
     );
   }
 }
-
-Card.propTypes = {
-  id: PropTypes.number,
-  title: titlePropType,
-  description: PropTypes.string,
-  color: PropTypes.string,
-  tasks: PropTypes.arrayOf(PropTypes.object)
-};
 
 export default Card;

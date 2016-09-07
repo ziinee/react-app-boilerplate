@@ -3,12 +3,7 @@
 import React, { Component } from 'react';
 import KanbanBoard from './KanbanBoard';
 import 'whatwg-fetch'
-
-type CardsType = {
-  id: number,
-  name: string,
-  done: boolean,
-}
+import type {CardType, TaskType} from './types';
 
 // 서버를 로컬에서 실행하는 경우 기본 URL은 localhost:3000 이며
 // 로컬 서버에는 권한 부여 헤더가 필요 없다.
@@ -20,7 +15,7 @@ const API_HEADERS = {
 
 class KanbanBoardContainer extends Component {
   state: {
-    cards: CardsType[],
+    cards: CardType[],
   }
   props: {}
 

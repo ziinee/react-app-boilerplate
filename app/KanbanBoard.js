@@ -1,8 +1,16 @@
+// @flow
+
 import React, {Component, PropTypes} from 'react';
 import List from './List';
+import type {CardType, TaskType} from './types.js';
 
 class KanbanBoard extends Component {
-  render () {
+  state: {}
+  props: {
+    cards: CardType[],
+  }
+
+  render() : Object {
     return (
       <div className="app">
         <List
@@ -30,9 +38,5 @@ class KanbanBoard extends Component {
     );
   }
 }
-
-KanbanBoard.propTypes = {
-  cards: PropTypes.arrayOf(PropTypes.object)
-};
 
 export default KanbanBoard;

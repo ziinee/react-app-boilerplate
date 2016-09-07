@@ -1,8 +1,18 @@
+// @flow
+
 import React, {Component, PropTypes} from 'react';
 import Card from './Card';
+import type {CardType, TaskType} from './types.js'
 
 class List extends Component {
-  render () {
+  state: {}
+  props: {
+    id: string,
+    title: string,
+    cards: CardType[],
+  }
+
+  render() : Object {
     let cards = this.props.cards.map((card) => {
       return (
         <Card key={card.id}
@@ -23,10 +33,5 @@ class List extends Component {
     );
   }
 }
-
-List.propTypes = {
-  title: PropTypes.string.isRequired,
-  cards: PropTypes.arrayOf(PropTypes.object)
-};
 
 export default List;

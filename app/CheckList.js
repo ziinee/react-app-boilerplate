@@ -1,7 +1,16 @@
+// @flow
+
 import React, {Component, PropTypes} from 'react';
+import type {TaskType} from './types.js';
 
 class CheckList extends Component {
-  render() {
+  state: {}
+  props: {
+    cardId: number,
+    tasks: TaskType[],
+  }
+
+  render() : Object {
     let tasks = this.props.tasks.map((task) => (
       <li key={task.id} className="checklist__task">
         <input type="checkbox" defaultChecked={task.done}/> {task.name}{' '}
@@ -16,10 +25,5 @@ class CheckList extends Component {
     );
   }
 }
-
-CheckList.propTypes = {
-  cardId: PropTypes.number,
-  tasks: PropTypes.arrayOf(PropTypes.object)
-};
 
 export default CheckList;
