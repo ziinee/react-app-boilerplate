@@ -1,17 +1,60 @@
+// @flow
+
+// 타입 힌트를 지정
+
+/*
+// 자바스크립트
+// 동적 타입 언어
+// 약한 타입 언어
+
+function string_concat (a: string, b: string): string {
+  return a + b;
+}
+
+function concat (a: string | number, b: string | number): string | null {
+  if (typeof a === 'string' && typeof b === 'string') {
+    return a + b;
+  }
+  if (typeof a === 'number' && typeof b === 'number') {
+    return a.toString() + b.toString();
+  }
+  return null;
+}
+
+
+// 자바
+// 정적 타입 언어
+// 강한 타입 언어
+
+String string_concat (String a, String b) {
+  return a + b;
+}
+*/
+
 import React, { Component, PropTypes } from 'react';
 import 'whatwg-fetch';
+
+type ContactType = {
+  name: string,
+  email: string,
+}
 
 // 주 컴포넌트이며 SearchBar와 ContactList를 렌더링
 
 class ContactsAppContainer extends Component {
-  constructor () {
+  state: {
+    contacts: ContactType[],
+  }
+  prpos: {}
+
+  constructor(): void {
     super();
     this.state={
       contacts: []
     };
   }
 
-  componentDidMount () {
+  componentDidMount (): void {
     fetch('./contacts.json')
     .then((response) => response.json())
     .then((responseData) => {
@@ -22,7 +65,7 @@ class ContactsAppContainer extends Component {
     });
   }
 
-  render(){
+  render() : Object {
     return (
       <ContactsApp contacts={this.state.contacts} />
     );
@@ -31,18 +74,25 @@ class ContactsAppContainer extends Component {
 
 
 class ContactsApp extends Component {
-  constructor () {
+  state: {
+    filterText: string,
+  }
+  props: {
+    contacts: ContactType[],
+  }
+
+  constructor(): void {
     super();
     this.state={
       filterText: ''
     };
   }
 
-  handleUserInput(searchTerm) {
+  handleUserInput(searchTerm): void {
     this.setState({filterText: searchTerm});
   }
 
-  render () {
+  render() : Object {
     return(
       <div>
         <SearchBar
@@ -56,16 +106,19 @@ class ContactsApp extends Component {
   }
 }
 
-ContactsApp.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object)
-};
 
 class SearchBar extends Component {
-  handleChange(event){
+  state: {}
+  props: {
+    onUserInput: (event: string) => void,
+    filterText: string,
+  }
+
+  handleChange(event) : void {
     this.props.onUserInput(event.target.value);
   }
 
-  render () {
+  render() : Object {
     return (
       <input type="search"
               placeholder="search"
@@ -75,13 +128,15 @@ class SearchBar extends Component {
   }
 }
 
-SearchBar.propTypes = {
-  onUserInput: PropTypes.func.isRequired,
-  filterText: PropTypes.string.isRequired
-};
 
 class ContactList extends Component {
-  render () {
+  state: {}
+  props: {
+    filterText: string,
+    contacts: ContactType[],
+  }
+
+  render() : Object {
     let filteredContacts = this.props.contacts.filter(
       (contact) => contact.name.indexOf(this.props.filterText) !== -1
     );
@@ -97,23 +152,17 @@ class ContactList extends Component {
   }
 }
 
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object),
-  filterText: PropTypes.string.isRequired
-};
 
 class ContactItem extends Component {
-  render () {
+  state: {}
+  props: ContactType
+
+  render() : Object {
     return (
       <li>{this.props.name} - {this.props.email}</li>
       );
   }
 }
-
-ContactItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-};
 
 
 export default {ContactsAppContainer};
