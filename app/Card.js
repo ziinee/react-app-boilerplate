@@ -20,13 +20,7 @@ class Card extends Component {
   state: {
     showDetails: boolean,
   }
-  props: {
-    id: number,
-    title: string,
-    description: string,
-    color: string,
-    tasks: TaskType[],
-  }
+  props: CardType
 
   constructor() : void {
     super(...arguments);
