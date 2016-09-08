@@ -11,7 +11,7 @@ class CheckList extends Component {
     taskCallbacks: TaskCallbackType,
   }
 
-  checkInputKeyPress(event) : void {
+  checkInputKeyPress(event: Object) : void {
     if (event.key === 'Enter') {
       this.props.taskCallbacks.add(
         this.props.cardId, event.target.value
@@ -36,7 +36,7 @@ class CheckList extends Component {
           href="#"
           className="checklist__task--remove"
           onClick={this.props.taskCallbacks.delete.bind(
-            null, this.props.cardId, task.id. taskIndex
+            null, this.props.cardId, task.id, taskIndex
           )} />
       </li>
     ));

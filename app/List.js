@@ -18,16 +18,17 @@ class List extends Component {
       return (
         <Card
           key={card.id}
-          taskCallbacks={this.props.taskCallbacks}          
-          {...card} />
+          taskCallbacks={this.props.taskCallbacks}
+          {...card}
+          />
       );
     });
 
     return (
       <div className="list">
         <h1>{this.props.title}</h1>
-          {cards}
-        </div>
+        {cards}
+      </div>
     );
   }
 }

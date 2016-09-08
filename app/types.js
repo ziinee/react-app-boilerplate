@@ -16,7 +16,7 @@ export type CardType = {
 }
 
 export type TaskCallbackType = {
-  toggle: Object,
-  delete: Object,
-  add: Object,
+  toggle: Function,
+  delete: Function,
+  add: Function,
 }

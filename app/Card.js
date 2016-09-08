@@ -38,7 +38,7 @@ class Card extends Component {
   }
 
   toggleDetails() : void {
-    this.setState({showDetails: !this.state.showDetails});
+    this.setState({showDetails: ! this.state.showDetails});
   }
 
   render() : Object {
@@ -50,7 +50,8 @@ class Card extends Component {
           <CheckList
             cardId={this.props.id}
             tasks={this.props.tasks}
-            taskCallbacks={this.props.taskCallbacks}/>
+            taskCallbacks={this.props.taskCallbacks}
+            />
         </div>
       );
     }
