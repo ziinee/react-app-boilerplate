@@ -2,7 +2,7 @@
 
 import React, {Component, PropTypes} from 'react';
 import Card from './Card';
-import type {CardType, TaskType} from './types.js'
+import type {CardType, TaskType, TaskCallbackType} from './types.js'
 
 class List extends Component {
   state: {}
@@ -10,14 +10,16 @@ class List extends Component {
     id: string,
     title: string,
     cards: CardType[],
+    taskCallbacks: TaskCallbackType,
   }
 
   render() : Object {
     let cards = this.props.cards.map((card) => {
       return (
         <Card
-          {...card}
-          />
+          key={card.id}
+          taskCallbacks={this.props.taskCallbacks}          
+          {...card} />
       );
     });
 

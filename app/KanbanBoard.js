@@ -2,12 +2,13 @@
 
 import React, {Component, PropTypes} from 'react';
 import List from './List';
-import type {CardType, TaskType} from './types.js';
+import type {CardType, TaskType, TaskCallbackType} from './types.js';
 
 class KanbanBoard extends Component {
   state: {}
   props: {
     cards: CardType[],
+    taskCallbacks: TaskCallbackType,
   }
 
   render() : Object {
@@ -16,6 +17,9 @@ class KanbanBoard extends Component {
         <List
           id="todo"
           title="To Do"
+          taskCallbacks={
+            this.props.taskCallbacks
+          }
           cards={
             this.props.cards.filter((card) => card.status === 'todo')
           }
@@ -23,6 +27,9 @@ class KanbanBoard extends Component {
         <List
           id="in-progress"
           title="In Progress"
+          taskCallbacks={
+            this.props.taskCallbacks
+          }
           cards={
             this.props.cards.filter((card) => card.status === 'in-progress')
           }
@@ -30,6 +37,9 @@ class KanbanBoard extends Component {
         <List
           id="done"
           title="Done"
+          taskCallbacks={
+            this.props.taskCallbacks
+          }
           cards={
             this.props.cards.filter((card) => card.status === 'done')
           }

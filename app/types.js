@@ -14,3 +14,9 @@ export type CardType = {
   status: string,
   tasks: TaskType[],
 }
+
+export type TaskCallbackType = {
+  toggle: Object,
+  delete: Object,
+  add: Object,
+}
